@@ -11,6 +11,7 @@
     "commitlint": "commitlint --edit"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.21.0",
     "expo": "~49.0.15",
     "expo-status-bar": "~1.6.0",
     "moment": "^2.30.1",

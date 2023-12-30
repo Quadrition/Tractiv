@@ -1,14 +1,12 @@
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
 import ActivityCard from "../features/activities/components/activity-card";
 import TractivLogo from "../icons/Logo";
-import moment from "moment";
 import PrimaryButton from "../common_components/button";
 import ScheduledActivitiesContainer from "../features/activities/containers/scheduled-activities";
 import { PlusIcon } from "../icons/Icons";
 
 // TODO: Title should not have top shadow
 const HomePage = () => {
-  moment();
   return (
     <SafeAreaView>
       <View
@@ -70,7 +68,7 @@ const HomePage = () => {
             <ActivityCard activityType="spinning" />
           </View>
         </View>
-        <ScheduledActivitiesContainer activities={[]} />
+        <ScheduledActivitiesContainer />
         <PrimaryButton text="Schedule Activity" icon={<PlusIcon />} />
       </ScrollView>
     </SafeAreaView>

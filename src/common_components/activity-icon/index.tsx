@@ -1,6 +1,6 @@
 import { View, ViewStyle } from "react-native";
 import { activityIcon } from "./helpers";
-import { ActivityType } from "../../features/activities/domain/activity";
+import { ActivityType } from "../../features/activities/types/activity";
 
 interface Props {
   activityType: ActivityType;

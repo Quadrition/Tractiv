@@ -1,4 +1,4 @@
-import { Activity } from "../../domain/activity";
+import { Activity } from "../../types/activity";
 
 export interface GroupedActivities {
   [key: string]: Activity[];

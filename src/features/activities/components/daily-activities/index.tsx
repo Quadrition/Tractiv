@@ -1,6 +1,6 @@
 import moment, { Moment } from "moment";
 import { View, Text, FlatList } from "react-native";
-import { Activity } from "../../domain/activity";
+import { Activity } from "../../types/activity";
 import ActivityIcon from "../../../../common_components/activity-icon";
 
 interface Props {

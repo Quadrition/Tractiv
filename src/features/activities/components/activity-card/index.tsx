@@ -1,5 +1,5 @@
 import { View, Text, Image } from "react-native";
-import { Activity, ActivityType } from "../../domain/activity";
+import { ActivityType } from "../../types/activity";
 import { FC } from "react";
 import {
   activityCardImage,
