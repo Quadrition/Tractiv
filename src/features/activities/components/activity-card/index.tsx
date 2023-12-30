@@ -1,13 +1,18 @@
 import { View, Text, Image } from "react-native";
-import { Activity } from "../../domain/activity";
+import { Activity, ActivityType } from "../../domain/activity";
 import { FC } from "react";
-import { activityCardIcon, activityCardImage } from "./helpers";
+import {
+  activityCardImage,
+  activityDescription,
+  activityReadableName,
+} from "./helpers";
+import ActivityIcon from "../../../../common_components/activity-icon";
 
 interface Props {
-  activity: Activity;
+  activityType: ActivityType;
 }
 
-const ActivityCard: FC<Props> = ({ activity }: Props) => {
+const ActivityCard: FC<Props> = ({ activityType }: Props) => {
   return (
     <View
       style={{
@@ -26,31 +31,18 @@ const ActivityCard: FC<Props> = ({ activity }: Props) => {
       }}
     >
       <Image
-        source={activityCardImage[activity.type]}
+        source={activityCardImage[activityType]}
         height={107}
         resizeMode="cover"
       />
-      <View
+      <ActivityIcon
+        activityType={activityType}
         style={{
-          width: 45,
-          height: 45,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 1000,
-          backgroundColor: "#FFFFFF",
-          shadowColor: "#425965",
-          shadowOffset: { width: 0, height: 10 },
-          shadowOpacity: 0.29, // Converted from hexadecimal 29 (41 in decimal) to opacity (41/255 ≈ 0.29)
-          shadowRadius: 30,
-          elevation: 30,
           position: "absolute",
           top: 107,
           transform: [{ translateY: -22.5 }],
         }}
-      >
-        {activityCardIcon[activity.type]}
-      </View>
+      />
       <Text
         style={{
           marginTop: 25,
@@ -62,7 +54,7 @@ const ActivityCard: FC<Props> = ({ activity }: Props) => {
           color: "#334856",
         }}
       >
-        {activity.name}
+        {activityReadableName[activityType]}
       </Text>
       <Text
         style={{
@@ -75,7 +67,7 @@ const ActivityCard: FC<Props> = ({ activity }: Props) => {
           textTransform: "uppercase",
         }}
       >
-        {activity.description}
+        {activityDescription[activityType]}
       </Text>
     </View>
   );
