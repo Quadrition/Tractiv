@@ -2,8 +2,9 @@ import { SafeAreaView, ScrollView, Text, View } from "react-native";
 import ActivityCard from "../features/activities/components/activity-card";
 import TractivLogo from "../icons/Logo";
 import moment from "moment";
-import DailyActivities from "../features/activities/components/daily-activities";
 import PrimaryButton from "../common_components/button";
+import ScheduledActivitiesContainer from "../features/activities/containers/scheduled-activities";
+import { PlusIcon } from "../icons/Icons";
 
 // TODO: Title should not have top shadow
 const HomePage = () => {
@@ -17,9 +18,9 @@ const HomePage = () => {
           alignItems: "center",
           backgroundColor: "#FFFFFF",
           shadowColor: "#1B1C20",
-          shadowOffset: { width: 0, height: 5 },
+          shadowOffset: { width: 0, height: 10 },
           shadowOpacity: 0.1,
-          shadowRadius: 10,
+          shadowRadius: 5,
           elevation: 10,
         }}
       >
@@ -29,6 +30,8 @@ const HomePage = () => {
         contentContainerStyle={{
           paddingBottom: 84,
           paddingTop: 20,
+          display: "flex",
+          gap: 20,
         }}
       >
         <Text
@@ -43,7 +46,7 @@ const HomePage = () => {
         >
           Track Your Activity
         </Text>
-        <View style={{ display: "flex", gap: 24, marginTop: 20 }}>
+        <View style={{ display: "flex", gap: 24 }}>
           <View
             style={{
               display: "flex",
@@ -67,20 +70,8 @@ const HomePage = () => {
             <ActivityCard activityType="spinning" />
           </View>
         </View>
-        <DailyActivities
-          date={moment()}
-          activities={[
-            { date: moment().toDate(), durationInMinutes: 30, type: "hiking" },
-            { date: moment().toDate(), durationInMinutes: 30, type: "surfing" },
-            {
-              date: moment().toDate(),
-              durationInMinutes: 30,
-              type: "spinning",
-            },
-            { date: moment().toDate(), durationInMinutes: 30, type: "weights" },
-          ]}
-        />
-        <PrimaryButton text="Schedule" />
+        <ScheduledActivitiesContainer activities={[]} />
+        <PrimaryButton text="Schedule Activity" icon={<PlusIcon />} />
       </ScrollView>
     </SafeAreaView>
   );

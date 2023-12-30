@@ -1,10 +1,12 @@
-import { Pressable, Text } from "react-native";
+import { ReactNode } from "react";
+import { Pressable, Text, View } from "react-native";
 
 interface Props {
   text: string;
+  icon?: ReactNode;
 }
 
-const PrimaryButton = ({ text }: Props) => {
+const PrimaryButton = ({ text, icon }: Props) => {
   return (
     <Pressable
       style={{
@@ -22,17 +24,28 @@ const PrimaryButton = ({ text }: Props) => {
         justifyContent: "center",
       }}
     >
-      <Text
+      <View
         style={{
-          fontSize: 14,
-          color: "white",
-          letterSpacing: 2,
-          textAlign: "center",
-          textTransform: "uppercase",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 10,
         }}
       >
-        {text}
-      </Text>
+        {icon && icon}
+        <Text
+          style={{
+            // TODO: Add spacing
+            fontSize: 14,
+            color: "white",
+            textAlign: "center",
+            textTransform: "uppercase",
+          }}
+        >
+          {text}
+        </Text>
+      </View>
     </Pressable>
   );
 };
