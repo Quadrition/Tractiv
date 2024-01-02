@@ -2,15 +2,23 @@ import { ReactNode } from "react";
 import { Pressable, Text, View } from "react-native";
 
 interface Props {
-  text: string;
+  children: string;
   icon?: ReactNode;
+  onPress?: () => void;
+  disabled?: boolean;
 }
 
-const PrimaryButton = ({ text, icon }: Props) => {
+const PrimaryButton = ({
+  children,
+  icon,
+  onPress,
+  disabled = false,
+}: Props) => {
   return (
     <Pressable
+      onPress={onPress}
       style={{
-        backgroundColor: "#D97D54",
+        backgroundColor: !disabled ? "#D97D54" : "#C8D1D3",
         shadowColor: "#425965",
         alignSelf: "center",
         shadowOffset: { width: 0, height: 10 },
@@ -43,7 +51,7 @@ const PrimaryButton = ({ text, icon }: Props) => {
             textTransform: "uppercase",
           }}
         >
-          {text}
+          {children}
         </Text>
       </View>
     </Pressable>

@@ -5,8 +5,12 @@ import PrimaryButton from "../common_components/button";
 import ScheduledActivitiesContainer from "../features/activities/containers/scheduled-activities";
 import { PlusIcon } from "../icons/Icons";
 
+interface Props {
+  navigation: any;
+}
+
 // TODO: Title should not have top shadow
-const HomePage = () => {
+const HomePage = ({ navigation }: Props) => {
   return (
     <SafeAreaView>
       <View
@@ -69,7 +73,14 @@ const HomePage = () => {
           </View>
         </View>
         <ScheduledActivitiesContainer />
-        <PrimaryButton text="Schedule Activity" icon={<PlusIcon />} />
+        <PrimaryButton
+          icon={<PlusIcon />}
+          onPress={() => {
+            navigation.navigate("Schedule Activity");
+          }}
+        >
+          Schedule Activity
+        </PrimaryButton>
       </ScrollView>
     </SafeAreaView>
   );
