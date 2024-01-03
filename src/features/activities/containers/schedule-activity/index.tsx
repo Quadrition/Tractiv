@@ -58,21 +58,29 @@ const ScheduleActivityContainer = () => {
   const availableTimeslots = useMemo<string[]>(() => {
     if (selectedDuration) {
       const availableSlots = [];
+
+      // * Get tomorrow's date from 8am
       const now = moment().startOf("day").add(8, "hours");
       const tomorrow = now.clone().add(1, "day");
 
+      // * Iterate over the next 7 days
       for (let i = 0; i < 7; i++) {
         const currentDate = tomorrow.clone().add(i, "day");
+
+        // * Get the start and end of the day
         const startOfDay = currentDate.clone().startOf("day").hour(8);
         const endOfDay = currentDate.clone().endOf("day").hour(22);
 
         let currentTime = startOfDay.clone();
+
+        // * Iterate over the day in 15 minute intervals
         while (
           currentTime.isBefore(endOfDay) &&
           endOfDay.diff(currentTime, "minutes") >= selectedDuration
         ) {
           const endTime = currentTime.clone().add(selectedDuration, "minutes");
 
+          // * Check if the current time slot is overlapping with any scheduled activities
           const isOverlapping = scheduledActivities.some(
             (activity) =>
               currentTime.isBetween(
@@ -92,6 +100,7 @@ const ScheduleActivityContainer = () => {
                 ))
           );
 
+          // * Check if the current time slot is overlapping with any scheduled activities
           if (!isOverlapping) {
             availableSlots.push(currentTime.format("dddd, MMMM Do, h:mm a"));
           }

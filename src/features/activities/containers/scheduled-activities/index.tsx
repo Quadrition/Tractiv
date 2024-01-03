@@ -12,24 +12,25 @@ const ScheduledActivitiesContainer = () => {
   );
 
   useEffect(() => {
-    const fetchActivities = async () => {
-      const activities = await activityService.getAllActivities();
-
-      const groupedActivities = activities.reduce((acc, activity) => {
-        const date = moment(activity.date).format("YYYY-MM-DD");
-        if (acc[date]) {
-          acc[date].push(activity);
-        } else {
-          acc[date] = [activity];
-        }
-        return acc;
-      }, {} as GroupedActivities);
-
-      setGroupedActivities(groupedActivities);
-    };
-
     fetchActivities();
   }, []);
+
+  const fetchActivities = async () => {
+    const activities = await activityService.getAllActivities();
+
+    // * Group activities by date
+    const groupedActivities = activities.reduce((acc, activity) => {
+      const date = moment(activity.date).format("YYYY-MM-DD");
+      if (acc[date]) {
+        acc[date].push(activity);
+      } else {
+        acc[date] = [activity];
+      }
+      return acc;
+    }, {} as GroupedActivities);
+
+    setGroupedActivities(groupedActivities);
+  };
 
   const sortedDates = Object.keys(groupedActivities).sort(
     (a, b) => new Date(a).getTime() - new Date(b).getTime()
