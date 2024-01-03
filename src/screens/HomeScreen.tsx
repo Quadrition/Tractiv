@@ -9,10 +9,9 @@ interface Props {
   navigation: any;
 }
 
-// TODO: Title should not have top shadow
 const HomePage = ({ navigation }: Props) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "#fff" }}>
       <StatusBar barStyle={"dark-content"} />
       <View
         style={{

@@ -20,7 +20,7 @@ const DailyActivities = ({ date, activities }: Props) => {
             textTransform: "uppercase",
           }}
         >
-          {date.format("MMMM d")}
+          {moment(date).format("MMMM d")}
         </Text>
         <Text
           style={{
@@ -30,7 +30,7 @@ const DailyActivities = ({ date, activities }: Props) => {
             fontWeight: "bold",
           }}
         >
-          {date.format("dddd")}
+          {moment(date).format("dddd")}
         </Text>
       </View>
       <FlatList<Activity>
