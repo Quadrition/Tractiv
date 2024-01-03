@@ -1,6 +1,6 @@
 import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
 import ActivityCard from "../features/activities/components/activity-card";
-import TractivLogo from "../icons/Logo";
+import TractivLogo from "../assets/icons/Logo";
 import TButton from "../common_components/button";
 import ScheduledActivitiesContainer from "../features/activities/containers/scheduled-activities";
 import { Icons, renderIcon } from "../utils/helpers/icons.helper";

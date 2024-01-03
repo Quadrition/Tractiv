@@ -9,7 +9,7 @@ import {
   SpinningIcon,
   SurfingIcon,
   WeightsIcon,
-} from "../../icons/Icons";
+} from "../../assets/icons/Icons";
 
 export enum Icons {
   Spinning,
