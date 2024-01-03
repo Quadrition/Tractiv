@@ -19,7 +19,13 @@ class ActivityService {
     try {
       const activities = await AsyncStorage.getItem("activities");
 
-      return activities ? JSON.parse(activities) : [];
+      return activities
+        ? JSON.parse(activities).map((activity: Activity) => ({
+            type: activity.type,
+            date: new Date(activity.date),
+            durationInMinutes: activity.durationInMinutes,
+          }))
+        : [];
     } catch (e) {
       console.error("Error reading activities", e);
       return [];

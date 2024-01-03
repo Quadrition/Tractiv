@@ -51,6 +51,10 @@ const ScheduleActivityContainer = () => {
     }
   };
 
+  useEffect(() => {
+    setSelectedTimeslot(undefined);
+  }, [selectedDuration]);
+
   const availableTimeslots = useMemo<string[]>(() => {
     if (selectedDuration) {
       const availableSlots = [];
