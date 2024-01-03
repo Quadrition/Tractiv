@@ -1,4 +1,4 @@
-import { G, Line, Path, Rect, Svg, SvgProps } from "react-native-svg";
+import { Circle, G, Line, Path, Rect, Svg, SvgProps } from "react-native-svg";
 
 // TODO: Check why stroke inherit does not work
 export const SpinningIcon = (props: SvgProps) => {
@@ -194,6 +194,47 @@ export const PlusIcon = (props: SvgProps) => {
           d="M19.57,14.743V18.57H15.743a.753.753,0,0,0-.743.743.8.8,0,0,0,.743.743H19.57v3.765a.753.753,0,0,0,.743.743.8.8,0,0,0,.743-.743V20.055h3.765a.753.753,0,0,0,.743-.743.7.7,0,0,0-.681-.743H21.117V14.743A.753.753,0,0,0,20.374,14,.86.86,0,0,0,19.57,14.743Z"
           transform="translate(768.649 302.03)"
           fill="#FFF"
+        />
+      </G>
+    </Svg>
+  );
+};
+
+export const DropdownIcon = (props: SvgProps) => {
+  return (
+    <Svg width="15.262" height="15.262" viewBox="0 0 15.262 15.262" {...props}>
+      <G transform="translate(-115.093 -407.415)">
+        <Path
+          d="M304.328,544H315.12l-10.792,10.792Z"
+          transform="translate(-46.75 1022.536) rotate(-135)"
+          fill="white"
+        />
+      </G>
+    </Svg>
+  );
+};
+
+export const SearchIcon = (props: SvgProps) => {
+  return (
+    <Svg width="15.914" height="16.914" viewBox="0 0 15.914 16.914">
+      <G transform="translate(-338 -126)">
+        <G
+          transform="translate(338 126)"
+          fill="none"
+          stroke="#fff"
+          strokeWidth={2}
+        >
+          <Circle cx="7" cy="7" r="7" stroke="none" />
+          <Circle cx="7" cy="7" r="6" fill="none" />
+        </G>
+        <Line
+          x2="3"
+          y2="3"
+          transform="translate(349.5 138.5)"
+          fill="none"
+          stroke="#fff"
+          strokeWidth={2}
+          strokeLinecap="round"
         />
       </G>
     </Svg>

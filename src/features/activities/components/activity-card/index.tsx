@@ -6,7 +6,7 @@ import {
   activityDescription,
   activityReadableName,
 } from "./helpers";
-import ActivityIcon from "../../../../common_components/activity-icon";
+import ActivityAvatar from "../../../../common_components/activity-avatar";
 
 interface Props {
   activityType: ActivityType;
@@ -20,10 +20,10 @@ const ActivityCard: FC<Props> = ({ activityType }: Props) => {
         backgroundColor: "white",
         shadowColor: "#1B1C20",
         shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.2, // Converted from hexadecimal 1A (26 in decimal) to opacity (26/255 ≈ 0.1)
+        shadowOpacity: 0.2,
         shadowRadius: 15,
         borderRadius: 15,
-        elevation: 15, // For Android shadow effect
+        elevation: 15,
         opacity: 1,
         width: 136,
         display: "flex",
@@ -35,7 +35,7 @@ const ActivityCard: FC<Props> = ({ activityType }: Props) => {
         height={107}
         resizeMode="cover"
       />
-      <ActivityIcon
+      <ActivityAvatar
         activityType={activityType}
         style={{
           position: "absolute",

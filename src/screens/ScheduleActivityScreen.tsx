@@ -18,6 +18,7 @@ const ScheduleActivityScreen = ({ navigation }: Props) => {
           position: "relative",
           display: "flex",
           justifyContent: "center",
+          paddingHorizontal: 20,
         }}
       >
         <Pressable

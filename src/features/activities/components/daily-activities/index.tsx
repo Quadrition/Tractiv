@@ -1,7 +1,7 @@
 import moment, { Moment } from "moment";
 import { View, Text, FlatList } from "react-native";
 import { Activity } from "../../types/activity";
-import ActivityIcon from "../../../../common_components/activity-icon";
+import ActivityAvatar from "../../../../common_components/activity-avatar";
 
 interface Props {
   date: Moment;
@@ -40,7 +40,7 @@ const DailyActivities = ({ date, activities }: Props) => {
         contentContainerStyle={{ paddingHorizontal: 15 }}
         renderItem={({ item }) => (
           <View style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <ActivityIcon
+            <ActivityAvatar
               activityType={item.type}
               style={{ width: 60, height: 60, shadowOpacity: 0.15 }}
             />

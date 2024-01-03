@@ -27,6 +27,8 @@ const PrimaryButton = ({
         elevation: 15,
         width: 295,
         borderRadius: 30,
+        borderColor: "#87BCBF",
+        borderWidth: disabled ? 1 : 0,
         height: 50,
         display: "flex",
         justifyContent: "center",

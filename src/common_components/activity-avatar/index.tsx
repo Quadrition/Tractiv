@@ -1,13 +1,15 @@
 import { View, ViewStyle } from "react-native";
-import { activityIcon } from "./helpers";
 import { ActivityType } from "../../features/activities/types/activity";
+import { renderIcon } from "../../utils/helpers/icons.helper";
+import { activityIcon } from "./helpers";
 
 interface Props {
   activityType: ActivityType;
   style?: ViewStyle;
+  isPrimary?: boolean;
 }
 
-const ActivityIcon = ({ activityType, style }: Props) => {
+const ActivityAvatar = ({ activityType, style, isPrimary = false }: Props) => {
   return (
     <View
       style={{
@@ -17,7 +19,7 @@ const ActivityIcon = ({ activityType, style }: Props) => {
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 1000,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: isPrimary ? "#d97d54" : "#FFFFFF",
         shadowColor: "#425965",
         shadowOffset: { width: 0, height: 10 },
         shadowOpacity: 0.29,
@@ -26,9 +28,13 @@ const ActivityIcon = ({ activityType, style }: Props) => {
         ...style,
       }}
     >
-      {activityIcon[activityType]}
+      {renderIcon(activityIcon[activityType], {
+        width: "66%",
+        height: "66%",
+        color: isPrimary ? "#FFFFFF" : "#d97d54",
+      })}
     </View>
   );
 };
 
-export default ActivityIcon;
+export default ActivityAvatar;
