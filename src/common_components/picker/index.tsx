@@ -2,6 +2,7 @@ import React, { ReactNode, useState } from "react";
 import { View, Text } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { TPickerItem } from "./types";
+import { appColors } from "../../utils/constants/colors";
 
 interface Props<T> {
   items: TPickerItem<T>[];
@@ -58,13 +59,19 @@ function TPicker<T>({
               flexGrow: 1,
             }}
           >
-            <Text style={{ fontSize: 15, fontWeight: "300", color: "#6E8CA0" }}>
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "300",
+                color: appColors.stale,
+              }}
+            >
               {selectedItem?.label || placeholder?.label}
             </Text>
           </View>
           <View
             style={{
-              backgroundColor: "#D97D54",
+              backgroundColor: appColors.rust,
               width: 56,
               height: 56,
               display: "flex",

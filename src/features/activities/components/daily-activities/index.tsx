@@ -2,6 +2,7 @@ import moment, { Moment } from "moment";
 import { View, Text, FlatList } from "react-native";
 import { Activity } from "../../types/activity";
 import ActivityAvatar from "../../../../common_components/activity-avatar";
+import { appColors } from "../../../../utils/constants/colors";
 
 interface Props {
   date: Moment;
@@ -14,7 +15,7 @@ const DailyActivities = ({ date, activities }: Props) => {
       <View style={{ display: "flex", gap: 5, marginLeft: 15 }}>
         <Text
           style={{
-            color: "#6E8CA0",
+            color: appColors.stale,
             fontSize: 14,
             letterSpacing: 2.1,
             textTransform: "uppercase",
@@ -24,7 +25,7 @@ const DailyActivities = ({ date, activities }: Props) => {
         </Text>
         <Text
           style={{
-            color: "#1B1C20",
+            color: appColors.onyx,
             fontSize: 18,
             letterSpacing: 0,
             fontWeight: "bold",

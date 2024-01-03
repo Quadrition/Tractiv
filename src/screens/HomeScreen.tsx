@@ -4,6 +4,8 @@ import TractivLogo from "../assets/icons/Logo";
 import TButton from "../common_components/button";
 import ScheduledActivitiesContainer from "../features/activities/containers/scheduled-activities";
 import { Icons, renderIcon } from "../utils/helpers/icons.helper";
+import { AppRoutes } from "../utils/constants/routes";
+import { appColors } from "../utils/constants/colors";
 
 interface Props {
   navigation: any;
@@ -11,15 +13,15 @@ interface Props {
 
 const HomePage = ({ navigation }: Props) => {
   return (
-    <SafeAreaView style={{ backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ backgroundColor: appColors.snow }}>
       <StatusBar barStyle={"dark-content"} />
       <View
         style={{
           paddingVertical: 24,
           display: "flex",
           alignItems: "center",
-          backgroundColor: "#FFFFFF",
-          shadowColor: "#1B1C20",
+          backgroundColor: appColors.snow,
+          shadowColor: appColors.onyx,
           shadowOffset: { width: 0, height: 10 },
           shadowOpacity: 0.1,
           shadowRadius: 5,
@@ -40,7 +42,7 @@ const HomePage = ({ navigation }: Props) => {
           style={{
             textAlign: "center",
             letterSpacing: 0,
-            color: "#1B1C20",
+            color: appColors.onyx,
             lineHeight: 35,
             fontSize: 18,
             fontWeight: "bold",
@@ -76,7 +78,7 @@ const HomePage = ({ navigation }: Props) => {
         <TButton
           icon={renderIcon(Icons.Plus)}
           onPress={() => {
-            navigation.navigate("Schedule Activity");
+            navigation.navigate(AppRoutes.SCHEDULE_ACTIVITY);
           }}
         >
           Schedule Activity

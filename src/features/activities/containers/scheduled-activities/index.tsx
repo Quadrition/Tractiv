@@ -4,6 +4,7 @@ import activityService from "../../services/activity.service";
 import { GroupedActivities } from "./types";
 import { View, Text } from "react-native";
 import DailyActivities from "../../components/daily-activities";
+import { appColors } from "../../../../utils/constants/colors";
 
 const ScheduledActivitiesContainer = () => {
   const [groupedActivities, setGroupedActivities] = useState<GroupedActivities>(
@@ -42,7 +43,7 @@ const ScheduledActivitiesContainer = () => {
           fontWeight: "bold",
           fontSize: 18,
           letterSpacing: 0,
-          color: "#1B1C20",
+          color: appColors.onyx,
         }}
       >
         Scheduled Activities
@@ -54,7 +55,7 @@ const ScheduledActivitiesContainer = () => {
             fontWeight: "300",
             fontSize: 14,
             letterSpacing: 0,
-            color: "#6E8CA0",
+            color: appColors.stale,
           }}
         >
           You don't have any activities scheduled yet.

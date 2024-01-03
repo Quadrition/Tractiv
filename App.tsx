@@ -7,6 +7,7 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
+import { AppRoutes } from "./src/utils/constants/routes";
 
 const Stack = createStackNavigator();
 
@@ -19,9 +20,9 @@ const App = () => {
           ...TransitionPresets.ModalSlideFromBottomIOS,
         }}
       >
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name={AppRoutes.HOME} component={HomeScreen} />
         <Stack.Screen
-          name="Schedule Activity"
+          name={AppRoutes.SCHEDULE_ACTIVITY}
           component={ScheduleActivityScreen}
         />
       </Stack.Navigator>

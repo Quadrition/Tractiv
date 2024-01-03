@@ -215,7 +215,7 @@ export const DropdownIcon = (props: SvgProps) => {
 
 export const SearchIcon = (props: SvgProps) => {
   return (
-    <Svg width="15.914" height="16.914" viewBox="0 0 15.914 16.914">
+    <Svg width="15.914" height="16.914" viewBox="0 0 15.914 16.914" {...props}>
       <G transform="translate(-338 -126)">
         <G
           transform="translate(338 126)"
@@ -248,6 +248,7 @@ export const CloseIcon = (props: SvgProps) => {
       height="13px"
       width="13px"
       viewBox="0 0 460.775 460.775"
+      {...props}
     >
       <Path
         d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55

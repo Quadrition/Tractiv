@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Pressable, Text, View } from "react-native";
+import { appColors } from "../../utils/constants/colors";
 
 interface Props {
   children: string;
@@ -21,9 +22,9 @@ const TButton = ({
       onPress={onPress}
       style={{
         backgroundColor: disabled
-          ? "#C8D1D3"
+          ? appColors.steel
           : type === "primary"
-          ? "#D97D54"
+          ? appColors.rust
           : "transparent",
         shadowColor: "#425965",
         alignSelf: "center",
@@ -33,7 +34,7 @@ const TButton = ({
         elevation: 15,
         width: 295,
         borderRadius: 30,
-        borderColor: "#87BCBF",
+        borderColor: appColors.sage,
         borderWidth: disabled || type === "outlined" ? 1 : 0,
         height: 50,
         display: "flex",
