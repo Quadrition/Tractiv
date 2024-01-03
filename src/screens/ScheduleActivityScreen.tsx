@@ -1,34 +1,24 @@
-import { Pressable, SafeAreaView, ScrollView, Text, View } from "react-native";
-import ScheduledActivitiesContainer from "../features/activities/containers/scheduled-activities";
-import { Link, StackActions } from "@react-navigation/native";
+import { SafeAreaView, StatusBar, View } from "react-native";
+import { NavigationProp } from "@react-navigation/native";
 import ScheduleActivityContainer from "../features/activities/containers/schedule-activity";
 
 interface Props {
-  navigation: any;
+  navigation: NavigationProp<ReactNavigation.RootParamList>;
 }
 
 const ScheduleActivityScreen = ({ navigation }: Props) => {
   // TODO: Check X button
   return (
     <SafeAreaView style={{ backgroundColor: "#344856" }}>
+      <StatusBar barStyle="light-content" />
       <View
         style={{
           backgroundColor: "#344856",
           height: "100%",
-          position: "relative",
-          display: "flex",
-          justifyContent: "center",
           paddingHorizontal: 20,
+          paddingTop: 20,
         }}
       >
-        <Pressable
-          onPress={() => {
-            navigation.dispatch(StackActions.pop(1));
-          }}
-          style={{ position: "absolute", top: 28, left: 32 }}
-        >
-          <Text style={{ color: "white" }}>X</Text>
-        </Pressable>
         <ScheduleActivityContainer />
       </View>
     </SafeAreaView>

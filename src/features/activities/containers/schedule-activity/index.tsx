@@ -1,6 +1,6 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { Activity, ActivityType } from "../../types/activity";
-import PrimaryButton from "../../../../common_components/primary-button";
+import TButton from "../../../../common_components/button";
 import React, { useEffect, useMemo, useState } from "react";
 import TPicker from "../../../../common_components/picker";
 import {
@@ -10,18 +10,23 @@ import {
 } from "./helpers";
 import activityService from "../../services/activity.service";
 import moment from "moment";
-import ActivityAvatar from "../../../../common_components/activity-avatar";
 import { Icons, renderIcon } from "../../../../utils/helpers/icons.helper";
+import { useNavigation } from "@react-navigation/native";
+import ActivityAvatarButton from "../../components/activity-avatar-button";
 
 const ScheduleActivityContainer = () => {
   const [selectedActivityType, setSelectedActivityType] =
     useState<ActivityType>();
-  const [selectedDuration, setSelectedDuration] = useState<number>();
+  const [selectedDuration, setSelectedDuration] = useState<number>(
+    availableDurations[0]
+  );
   const [selectedTimeslot, setSelectedTimeslot] = useState<Date>();
 
   const [scheduledActivities, setScheduledActivities] = useState<Activity[]>(
     []
   );
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     fetchScheduledActivities();
@@ -41,21 +46,27 @@ const ScheduleActivityContainer = () => {
       };
 
       await activityService.addActivity(activity);
+
+      navigation.goBack();
     }
   };
 
   const availableTimeslots = useMemo<string[]>(() => {
     if (selectedDuration) {
       const availableSlots = [];
-      // * Calculate tommorow's 8am
-      const currentDate = moment().startOf("day").add(1, "day").hour(8);
+      const now = moment().startOf("day").add(8, "hours");
+      const tomorrow = now.clone().add(1, "day");
 
-      // * Iterate through the next 7 days
       for (let i = 0; i < 7; i++) {
-        let currentTime = currentDate.clone();
+        const currentDate = tomorrow.clone().add(i, "day");
+        const startOfDay = currentDate.clone().startOf("day").hour(8);
         const endOfDay = currentDate.clone().endOf("day").hour(22);
 
-        while (currentTime.isBefore(endOfDay)) {
+        let currentTime = startOfDay.clone();
+        while (
+          currentTime.isBefore(endOfDay) &&
+          endOfDay.diff(currentTime, "minutes") >= selectedDuration
+        ) {
           const endTime = currentTime.clone().add(selectedDuration, "minutes");
 
           const isOverlapping = scheduledActivities.some(
@@ -81,10 +92,8 @@ const ScheduleActivityContainer = () => {
             availableSlots.push(currentTime.format("dddd, MMMM Do, h:mm a"));
           }
 
-          currentTime = endTime;
+          currentTime = currentTime.add(15, "minutes");
         }
-
-        currentDate.add(1, "day");
       }
 
       return availableSlots;
@@ -93,11 +102,12 @@ const ScheduleActivityContainer = () => {
     }
   }, [selectedDuration, scheduledActivities]);
 
-  // TODO: Check X button
   return (
     <View style={{ display: "flex", justifyContent: "space-between", flex: 1 }}>
-      <View />
-      <View style={{ display: "flex", gap: 40, alignItems: "stretch" }}>
+      <Pressable onPress={() => navigation.goBack()}>
+        {renderIcon(Icons.Close)}
+      </Pressable>
+      <View style={{ display: "flex", gap: 40 }}>
         <Text
           style={{
             fontWeight: "bold",
@@ -121,9 +131,11 @@ const ScheduleActivityContainer = () => {
               style={{ display: "flex", gap: 8, alignItems: "center" }}
               key={activity}
             >
-              <ActivityAvatar
+              <ActivityAvatarButton
+                activityType={activity}
                 style={{ width: 60, height: 60 }}
-                activityType={activity as ActivityType}
+                isSelected={activity === selectedActivityType}
+                onPressed={setSelectedActivityType}
               />
               <Text
                 style={{
@@ -143,7 +155,11 @@ const ScheduleActivityContainer = () => {
             label: readableDurations[duration],
             value: duration,
           }))}
-          onValueChanged={setSelectedDuration}
+          onValueChanged={(duration) => {
+            if (duration) {
+              setSelectedDuration(duration);
+            }
+          }}
           icon={renderIcon(Icons.Dropdown)}
         />
         <TPicker<string | undefined>
@@ -153,7 +169,11 @@ const ScheduleActivityContainer = () => {
             value: timeslot,
           }))}
           onValueChanged={(timeslot) =>
-            setSelectedTimeslot(moment(timeslot).toDate())
+            setSelectedTimeslot(
+              timeslot
+                ? moment(timeslot, "dddd, MMMM Do, h:mm a").toDate()
+                : undefined
+            )
           }
           placeholder={{
             label: "Pick a date & time or find a free slot",
@@ -162,14 +182,15 @@ const ScheduleActivityContainer = () => {
           icon={renderIcon(Icons.Search)}
         />
       </View>
-      <PrimaryButton
+      <TButton
+        type="outlined"
         disabled={
           !selectedDuration || !selectedTimeslot || !selectedActivityType
         }
         onPress={handleScheduleActivity}
       >
         Schedule
-      </PrimaryButton>
+      </TButton>
     </View>
   );
 };

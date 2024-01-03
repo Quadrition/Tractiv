@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { SvgProps } from "react-native-svg";
 import {
+  CloseIcon,
   DropdownIcon,
   HikingIcon,
   PlusIcon,
@@ -18,6 +19,7 @@ export enum Icons {
   Plus,
   Dropdown,
   Search,
+  Close,
 }
 
 export const renderIcon = (type: Icons, style?: SvgProps): ReactNode => {
@@ -36,5 +38,7 @@ export const renderIcon = (type: Icons, style?: SvgProps): ReactNode => {
       return <DropdownIcon {...style} />;
     case Icons.Search:
       return <SearchIcon {...style} />;
+    case Icons.Close:
+      return <CloseIcon {...style} />;
   }
 };

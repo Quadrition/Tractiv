@@ -52,7 +52,7 @@ const DailyActivities = ({ date, activities }: Props) => {
                 lineHeight: 14,
               }}
             >
-              {moment(date).format("h:mmA")}
+              {moment(item.date).format("h:mmA")}
             </Text>
           </View>
         )}

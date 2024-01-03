@@ -6,8 +6,6 @@ import ScheduleActivityScreen from "./src/screens/ScheduleActivityScreen";
 
 const Stack = createNativeStackNavigator();
 
-// TODO: Organize imports
-// TODO: Extract styles into StyleSheet
 const App = () => {
   return (
     <NavigationContainer>

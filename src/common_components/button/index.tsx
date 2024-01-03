@@ -6,19 +6,25 @@ interface Props {
   icon?: ReactNode;
   onPress?: () => void;
   disabled?: boolean;
+  type?: "primary" | "outlined";
 }
 
-const PrimaryButton = ({
+const TButton = ({
   children,
   icon,
   onPress,
   disabled = false,
+  type = "primary",
 }: Props) => {
   return (
     <Pressable
       onPress={onPress}
       style={{
-        backgroundColor: !disabled ? "#D97D54" : "#C8D1D3",
+        backgroundColor: disabled
+          ? "#C8D1D3"
+          : type === "primary"
+          ? "#D97D54"
+          : "transparent",
         shadowColor: "#425965",
         alignSelf: "center",
         shadowOffset: { width: 0, height: 10 },
@@ -28,7 +34,7 @@ const PrimaryButton = ({
         width: 295,
         borderRadius: 30,
         borderColor: "#87BCBF",
-        borderWidth: disabled ? 1 : 0,
+        borderWidth: disabled || type === "outlined" ? 1 : 0,
         height: 50,
         display: "flex",
         justifyContent: "center",
@@ -46,11 +52,11 @@ const PrimaryButton = ({
         {icon && icon}
         <Text
           style={{
-            // TODO: Add spacing
             fontSize: 14,
             color: "white",
             textAlign: "center",
             textTransform: "uppercase",
+            letterSpacing: 2,
           }}
         >
           {children}
@@ -60,4 +66,4 @@ const PrimaryButton = ({
   );
 };
 
-export default PrimaryButton;
+export default TButton;

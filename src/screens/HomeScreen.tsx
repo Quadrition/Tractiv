@@ -1,9 +1,8 @@
-import { SafeAreaView, ScrollView, Text, View } from "react-native";
+import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
 import ActivityCard from "../features/activities/components/activity-card";
 import TractivLogo from "../icons/Logo";
-import PrimaryButton from "../common_components/primary-button";
+import TButton from "../common_components/button";
 import ScheduledActivitiesContainer from "../features/activities/containers/scheduled-activities";
-import { PlusIcon } from "../icons/Icons";
 import { Icons, renderIcon } from "../utils/helpers/icons.helper";
 
 interface Props {
@@ -14,6 +13,7 @@ interface Props {
 const HomePage = ({ navigation }: Props) => {
   return (
     <SafeAreaView>
+      <StatusBar barStyle={"dark-content"} />
       <View
         style={{
           paddingVertical: 24,
@@ -74,14 +74,14 @@ const HomePage = ({ navigation }: Props) => {
           </View>
         </View>
         <ScheduledActivitiesContainer />
-        <PrimaryButton
+        <TButton
           icon={renderIcon(Icons.Plus)}
           onPress={() => {
             navigation.navigate("Schedule Activity");
           }}
         >
           Schedule Activity
-        </PrimaryButton>
+        </TButton>
       </ScrollView>
     </SafeAreaView>
   );
