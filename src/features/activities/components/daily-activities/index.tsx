@@ -39,6 +39,7 @@ const DailyActivities = ({ date, activities }: Props) => {
         data={[...activities, {} as Activity, {} as Activity]}
         style={{ backgroundColor: "transparent" }}
         horizontal
+        showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 15 }}
         renderItem={({ item, index }) =>
           index < activities.length ? (
