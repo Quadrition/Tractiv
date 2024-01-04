@@ -43,7 +43,6 @@ const HomePage = ({ navigation }: Props) => {
             textAlign: "center",
             letterSpacing: 0,
             color: appColors.onyx,
-            lineHeight: 35,
             fontSize: 18,
             fontWeight: "bold",
           }}

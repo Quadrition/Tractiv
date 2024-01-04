@@ -49,7 +49,6 @@ const ActivityCard: FC<Props> = ({ activityType }: Props) => {
           textAlign: "center",
           fontWeight: "bold",
           fontSize: 15,
-          lineHeight: 35,
           letterSpacing: 0,
           color: "#334856",
         }}
@@ -61,7 +60,6 @@ const ActivityCard: FC<Props> = ({ activityType }: Props) => {
           textAlign: "center",
           marginTop: 2,
           fontSize: 10,
-          lineHeight: 12,
           letterSpacing: 1.5,
           color: "#7D8184",
           textTransform: "uppercase",

@@ -2,6 +2,7 @@ import moment, { Moment } from "moment";
 import { View, Text, FlatList } from "react-native";
 import { Activity } from "../../types/activity";
 import ActivityAvatar from "../../../../common_components/activity-avatar";
+import EmptyTimeslot from "../empty-timeslot";
 import { appColors } from "../../../../utils/constants/colors";
 
 interface Props {
@@ -35,28 +36,31 @@ const DailyActivities = ({ date, activities }: Props) => {
         </Text>
       </View>
       <FlatList<Activity>
-        data={activities}
+        data={[...activities, {} as Activity, {} as Activity]}
         style={{ backgroundColor: "transparent" }}
         horizontal
         contentContainerStyle={{ paddingHorizontal: 15 }}
-        renderItem={({ item }) => (
-          <View style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <ActivityAvatar
-              activityType={item.type}
-              style={{ width: 60, height: 60, shadowOpacity: 0.15 }}
-            />
-            <Text
-              style={{
-                color: "#8D8C8C",
-                fontWeight: "300",
-                fontSize: 12,
-                lineHeight: 14,
-              }}
-            >
-              {moment(item.date).format("h:mmA")}
-            </Text>
-          </View>
-        )}
+        renderItem={({ item, index }) =>
+          index < activities.length ? (
+            <View style={{ display: "flex", gap: 10, alignItems: "center" }}>
+              <ActivityAvatar
+                activityType={item.type}
+                style={{ width: 60, height: 60, shadowOpacity: 0.15 }}
+              />
+              <Text
+                style={{
+                  color: "#8D8C8C",
+                  fontWeight: "300",
+                  fontSize: 12,
+                }}
+              >
+                {moment(item.date).format("h:mmA")}
+              </Text>
+            </View>
+          ) : (
+            <EmptyTimeslot />
+          )
+        }
         ItemSeparatorComponent={() => <View style={{ width: 20 }} />}
         keyExtractor={(_, index) => index.toString()}
       />

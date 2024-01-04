@@ -1,11 +1,12 @@
 import { View, Text, Pressable } from "react-native";
 import { Activity, ActivityType } from "../../types/activity";
 import TButton from "../../../../common_components/button";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import TPicker from "../../../../common_components/picker";
 import {
   allActivityTypes,
   availableDurations,
+  calculateAvailableTimeslots,
   readableDurations,
 } from "./helpers";
 import activityService from "../../services/activity.service";
@@ -24,6 +25,10 @@ const ScheduleActivityContainer = () => {
 
   const [scheduledActivities, setScheduledActivities] = useState<Activity[]>(
     []
+  );
+  const availableTimeslots = calculateAvailableTimeslots(
+    selectedDuration,
+    scheduledActivities
   );
 
   const navigation = useNavigation();
@@ -54,66 +59,6 @@ const ScheduleActivityContainer = () => {
   useEffect(() => {
     setSelectedTimeslot(undefined);
   }, [selectedDuration]);
-
-  const availableTimeslots = useMemo<string[]>(() => {
-    if (selectedDuration) {
-      const availableSlots = [];
-
-      // * Get tomorrow's date from 8am
-      const now = moment().startOf("day").add(8, "hours");
-      const tomorrow = now.clone().add(1, "day");
-
-      // * Iterate over the next 7 days
-      for (let i = 0; i < 7; i++) {
-        const currentDate = tomorrow.clone().add(i, "day");
-
-        // * Get the start and end of the day
-        const startOfDay = currentDate.clone().startOf("day").hour(8);
-        const endOfDay = currentDate.clone().endOf("day").hour(22);
-
-        let currentTime = startOfDay.clone();
-
-        // * Iterate over the day in 15 minute intervals
-        while (
-          currentTime.isBefore(endOfDay) &&
-          endOfDay.diff(currentTime, "minutes") >= selectedDuration
-        ) {
-          const endTime = currentTime.clone().add(selectedDuration, "minutes");
-
-          // * Check if the current time slot is overlapping with any scheduled activities
-          const isOverlapping = scheduledActivities.some(
-            (activity) =>
-              currentTime.isBetween(
-                activity.date,
-                moment(activity.date).add(activity.durationInMinutes, "minutes")
-              ) ||
-              endTime.isBetween(
-                activity.date,
-                moment(activity.date).add(activity.durationInMinutes, "minutes")
-              ) ||
-              (currentTime.isSameOrBefore(activity.date) &&
-                endTime.isSameOrAfter(
-                  moment(activity.date).add(
-                    activity.durationInMinutes,
-                    "minutes"
-                  )
-                ))
-          );
-
-          // * Check if the current time slot is overlapping with any scheduled activities
-          if (!isOverlapping) {
-            availableSlots.push(currentTime.format("dddd, MMMM Do, h:mm a"));
-          }
-
-          currentTime = currentTime.add(15, "minutes");
-        }
-      }
-
-      return availableSlots;
-    } else {
-      return [];
-    }
-  }, [selectedDuration, scheduledActivities]);
 
   return (
     <View style={{ display: "flex", justifyContent: "space-between", flex: 1 }}>
