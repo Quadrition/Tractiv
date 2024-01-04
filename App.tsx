@@ -8,25 +8,29 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 import { AppRoutes } from "./src/utils/constants/routes";
+import { Provider } from "react-redux";
+import { store } from "./src/store";
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          ...TransitionPresets.ModalSlideFromBottomIOS,
-        }}
-      >
-        <Stack.Screen name={AppRoutes.HOME} component={HomeScreen} />
-        <Stack.Screen
-          name={AppRoutes.SCHEDULE_ACTIVITY}
-          component={ScheduleActivityScreen}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            ...TransitionPresets.ModalSlideFromBottomIOS,
+          }}
+        >
+          <Stack.Screen name={AppRoutes.HOME} component={HomeScreen} />
+          <Stack.Screen
+            name={AppRoutes.SCHEDULE_ACTIVITY}
+            component={ScheduleActivityScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

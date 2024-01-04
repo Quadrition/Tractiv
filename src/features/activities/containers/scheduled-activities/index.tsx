@@ -1,25 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import moment from "moment";
-import activityService from "../../services/activity.service";
 import { GroupedActivities } from "./types";
 import { View, Text } from "react-native";
 import DailyActivities from "../../components/daily-activities";
 import { appColors } from "../../../../utils/constants/colors";
+import { useSelector } from "react-redux";
+import { fetchActivities } from "../../state/activity.thunks";
+import { RootState, useAppDispatch } from "../../../../store";
 
 const ScheduledActivitiesContainer = () => {
-  const [groupedActivities, setGroupedActivities] = useState<GroupedActivities>(
-    {}
+  const activities = useSelector(
+    (state: RootState) => state.activity.activities
   );
 
-  useEffect(() => {
-    fetchActivities();
-  }, []);
-
-  const fetchActivities = async () => {
-    const activities = await activityService.getAllActivities();
-
-    // * Group activities by date
-    const groupedActivities = activities.reduce((acc, activity) => {
+  const groupedActivities = useMemo(() => {
+    return activities.reduce((acc, activity) => {
       const date = moment(activity.date).format("YYYY-MM-DD");
       if (acc[date]) {
         acc[date].push(activity);
@@ -28,9 +23,13 @@ const ScheduledActivitiesContainer = () => {
       }
       return acc;
     }, {} as GroupedActivities);
+  }, [activities]);
 
-    setGroupedActivities(groupedActivities);
-  };
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchActivities());
+  }, []);
 
   const sortedDates = Object.keys(groupedActivities).sort(
     (a, b) => new Date(a).getTime() - new Date(b).getTime()

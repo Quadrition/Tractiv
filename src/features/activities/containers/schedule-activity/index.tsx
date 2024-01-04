@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from "react-native";
 import { Activity, ActivityType } from "../../types/activity";
 import TButton from "../../../../common_components/button";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TPicker from "../../../../common_components/picker";
 import {
   allActivityTypes,
@@ -9,11 +9,13 @@ import {
   calculateAvailableTimeslots,
   readableDurations,
 } from "./helpers";
-import activityService from "../../services/activity.service";
 import moment from "moment";
 import { Icons, renderIcon } from "../../../../utils/helpers/icons.helper";
 import { useNavigation } from "@react-navigation/native";
 import ActivityAvatarButton from "../../components/activity-avatar-button";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../../../../store";
+import { insertActivity } from "../../state/activity.thunks";
 
 const ScheduleActivityContainer = () => {
   const [selectedActivityType, setSelectedActivityType] =
@@ -23,8 +25,8 @@ const ScheduleActivityContainer = () => {
   );
   const [selectedTimeslot, setSelectedTimeslot] = useState<Date>();
 
-  const [scheduledActivities, setScheduledActivities] = useState<Activity[]>(
-    []
+  const scheduledActivities = useSelector(
+    (state: RootState) => state.activity.activities
   );
   const availableTimeslots = calculateAvailableTimeslots(
     selectedDuration,
@@ -32,15 +34,7 @@ const ScheduleActivityContainer = () => {
   );
 
   const navigation = useNavigation();
-
-  useEffect(() => {
-    fetchScheduledActivities();
-  }, []);
-
-  const fetchScheduledActivities = async () => {
-    const activities = await activityService.getAllActivities();
-    setScheduledActivities(activities);
-  };
+  const dispatch = useAppDispatch();
 
   const handleScheduleActivity = async () => {
     if (selectedDuration && selectedTimeslot && selectedActivityType) {
@@ -50,15 +44,14 @@ const ScheduleActivityContainer = () => {
         durationInMinutes: selectedDuration,
       };
 
-      await activityService.addActivity(activity);
-
+      dispatch(insertActivity(activity));
       navigation.goBack();
     }
   };
 
-  useEffect(() => {
-    setSelectedTimeslot(undefined);
-  }, [selectedDuration]);
+  // useEffect(() => {
+  //   setSelectedTimeslot(moment(timeslot, "dddd, MMMM Do, h:mm a").toDate());
+  // }, [selectedDuration, availableTimeslots]);
 
   return (
     <View style={{ display: "flex", justifyContent: "space-between", flex: 1 }}>
