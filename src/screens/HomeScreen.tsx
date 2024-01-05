@@ -13,8 +13,8 @@ interface Props {
 
 const HomePage = ({ navigation }: Props) => {
   return (
-    <SafeAreaView style={{ backgroundColor: appColors.snow }}>
-      <StatusBar barStyle={"dark-content"} />
+    <SafeAreaView style={{ backgroundColor: appColors.snow, flex: 1 }}>
+      <StatusBar barStyle={"dark-content"} backgroundColor={appColors.snow} />
       <View
         style={{
           paddingVertical: 24,
@@ -32,7 +32,7 @@ const HomePage = ({ navigation }: Props) => {
       </View>
       <ScrollView
         contentContainerStyle={{
-          paddingBottom: 84,
+          paddingBottom: 32,
           paddingTop: 20,
           display: "flex",
           gap: 20,
