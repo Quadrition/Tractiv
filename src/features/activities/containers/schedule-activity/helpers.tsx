@@ -75,7 +75,7 @@ export const calculateAvailableTimeslots = (
             availableSlots.push(currentTime.format("dddd, MMMM Do, h:mm a"));
           }
 
-          currentTime = currentTime.add(15, "minutes");
+          currentTime = currentTime.add(selectedDuration, "minutes");
         }
       }
 
