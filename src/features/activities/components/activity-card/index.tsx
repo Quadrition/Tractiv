@@ -7,6 +7,7 @@ import {
   activityReadableName,
 } from "./helpers";
 import ActivityAvatar from "../../../../common_components/activity-avatar";
+import { appColors } from "../../../../utils/constants/colors";
 
 interface Props {
   activityType: ActivityType;
@@ -17,7 +18,7 @@ const ActivityCard: FC<Props> = ({ activityType }: Props) => {
     <View
       style={{
         paddingBottom: 16,
-        backgroundColor: "white",
+        backgroundColor: appColors.snow,
         shadowColor: "#1B1C20",
         shadowOffset: { width: 0, height: 10 },
         shadowOpacity: 0.2,
@@ -47,10 +48,9 @@ const ActivityCard: FC<Props> = ({ activityType }: Props) => {
         style={{
           marginTop: 25,
           textAlign: "center",
-          fontWeight: "bold",
           fontSize: 15,
-          letterSpacing: 0,
           color: "#334856",
+          fontFamily: "Europa Bold",
         }}
       >
         {activityReadableName[activityType]}
@@ -63,6 +63,7 @@ const ActivityCard: FC<Props> = ({ activityType }: Props) => {
           letterSpacing: 1.5,
           color: "#7D8184",
           textTransform: "uppercase",
+          fontFamily: "Rift Soft",
         }}
       >
         {activityDescription[activityType]}

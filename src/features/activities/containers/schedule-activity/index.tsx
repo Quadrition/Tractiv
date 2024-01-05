@@ -16,6 +16,7 @@ import ActivityAvatarButton from "../../components/activity-avatar-button";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../../store";
 import { insertActivity } from "../../state/activity.thunks";
+import { appColors } from "../../../../utils/constants/colors";
 
 const ScheduleActivityContainer = () => {
   const [selectedActivityType, setSelectedActivityType] =
@@ -61,11 +62,11 @@ const ScheduleActivityContainer = () => {
       <View style={{ display: "flex", gap: 40 }}>
         <Text
           style={{
-            fontWeight: "bold",
             fontSize: 30,
             textAlign: "center",
             letterSpacing: 0,
-            color: "white",
+            color: appColors.snow,
+            fontFamily: "Europa Bold",
           }}
         >
           Schedule your activity
@@ -90,9 +91,11 @@ const ScheduleActivityContainer = () => {
               />
               <Text
                 style={{
-                  color: "white",
+                  color: appColors.snow,
                   fontSize: 14,
                   textTransform: "uppercase",
+                  fontFamily: "Rift Soft",
+                  letterSpacing: 2.1,
                 }}
               >
                 {activity}

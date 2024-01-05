@@ -54,10 +54,11 @@ const TButton = ({
         <Text
           style={{
             fontSize: 14,
-            color: "white",
+            color: appColors.snow,
             textAlign: "center",
             textTransform: "uppercase",
-            letterSpacing: 2,
+            letterSpacing: 2.1,
+            fontFamily: "Rift Soft",
           }}
         >
           {children}

@@ -33,7 +33,13 @@ function TPicker<T>({
 
   return (
     <View style={{ display: "flex", gap: 10 }}>
-      <Text style={{ fontSize: 14, fontWeight: "300", color: "white" }}>
+      <Text
+        style={{
+          fontSize: 14,
+          color: appColors.snow,
+          fontFamily: "Europa Light",
+        }}
+      >
         {label}
       </Text>
       <RNPickerSelect
@@ -52,7 +58,7 @@ function TPicker<T>({
         >
           <View
             style={{
-              backgroundColor: "white",
+              backgroundColor: appColors.snow,
               display: "flex",
               justifyContent: "center",
               padding: 20,
@@ -62,8 +68,8 @@ function TPicker<T>({
             <Text
               style={{
                 fontSize: 15,
-                fontWeight: "300",
                 color: appColors.stale,
+                fontFamily: "Europa Light",
               }}
             >
               {selectedItem?.label || placeholder?.label}

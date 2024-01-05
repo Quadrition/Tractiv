@@ -20,6 +20,7 @@ const DailyActivities = ({ date, activities }: Props) => {
             fontSize: 14,
             letterSpacing: 2.1,
             textTransform: "uppercase",
+            fontFamily: "Rift Soft",
           }}
         >
           {moment(date).format("MMMM d")}
@@ -29,7 +30,7 @@ const DailyActivities = ({ date, activities }: Props) => {
             color: appColors.onyx,
             fontSize: 18,
             letterSpacing: 0,
-            fontWeight: "bold",
+            fontFamily: "Europa Bold",
           }}
         >
           {moment(date).format("dddd")}
@@ -53,6 +54,7 @@ const DailyActivities = ({ date, activities }: Props) => {
                   color: "#8D8C8C",
                   fontWeight: "300",
                   fontSize: 12,
+                  fontFamily: "Europa Regular",
                 }}
               >
                 {moment(item.date).format("h:mmA")}

@@ -24,8 +24,8 @@ const ActivityAvatar = ({ activityType, style, isPrimary = false }: Props) => {
         shadowColor: "#425965",
         shadowOffset: { width: 0, height: 10 },
         shadowOpacity: 0.29,
-        shadowRadius: 10,
-        elevation: 10,
+        shadowRadius: 20,
+        elevation: 20,
         ...style,
       }}
     >

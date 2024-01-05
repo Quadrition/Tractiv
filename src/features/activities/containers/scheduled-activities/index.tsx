@@ -40,10 +40,10 @@ const ScheduledActivitiesContainer = () => {
       <Text
         style={{
           marginLeft: 20,
-          fontWeight: "bold",
           fontSize: 18,
           letterSpacing: 0,
           color: appColors.onyx,
+          fontFamily: "Europa Bold",
         }}
       >
         Scheduled Activities
@@ -52,10 +52,9 @@ const ScheduledActivitiesContainer = () => {
         <Text
           style={{
             marginLeft: 20,
-            fontWeight: "300",
             fontSize: 14,
-            letterSpacing: 0,
             color: appColors.stale,
+            fontFamily: "Europa Light",
           }}
         >
           You don't have any activities scheduled yet.

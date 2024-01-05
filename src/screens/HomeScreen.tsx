@@ -41,10 +41,9 @@ const HomePage = ({ navigation }: Props) => {
         <Text
           style={{
             textAlign: "center",
-            letterSpacing: 0,
             color: appColors.onyx,
             fontSize: 18,
-            fontWeight: "bold",
+            fontFamily: "Europa Bold",
           }}
         >
           Track Your Activity
