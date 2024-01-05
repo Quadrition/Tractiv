@@ -23,7 +23,7 @@ const DailyActivities = ({ date, activities }: Props) => {
             fontFamily: "Rift Soft",
           }}
         >
-          {moment(date).format("MMMM d")}
+          {moment(date).format("MMMM D")}
         </Text>
         <Text
           style={{

@@ -46,6 +46,7 @@ function TPicker<T>({
         onValueChange={handleValueChanged}
         placeholder={placeholder || {}}
         items={items}
+        value={selectedItem?.value}
       >
         <View
           style={{

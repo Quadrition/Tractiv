@@ -23,8 +23,8 @@ const HomePage = ({ navigation }: Props) => {
           backgroundColor: appColors.snow,
           shadowColor: appColors.onyx,
           shadowOffset: { width: 0, height: 10 },
-          shadowOpacity: 0.1,
-          shadowRadius: 5,
+          shadowOpacity: 0.05,
+          shadowRadius: 10,
           elevation: 10,
         }}
       >
