@@ -39,6 +39,12 @@ To run the application, follow these steps:
 
    Follow the instructions from Expo to run the app on your preferred device/emulator.
 
+## Branch Usage
+
+- **Development (dev) Branch**: This branch is used for ongoing development work. New features, improvements, and fixes are implemented and tested here before being merged into the main branch.
+
+- **Main Branch**: The main branch contains the stable and release-ready version of the application. It is used for release purposes, ensuring that the deployed code is thoroughly tested and stable.
+
 ## Assets
 
 All images and fonts used in the application are stored in designated folders:
