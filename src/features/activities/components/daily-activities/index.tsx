@@ -1,7 +1,7 @@
 import moment, { Moment } from "moment";
 import { View, Text, FlatList } from "react-native";
 import { Activity } from "../../types/activity";
-import ActivityAvatar from "../../../../common_components/activity-avatar";
+import ActivityAvatar from "../activity-avatar";
 import EmptyTimeslot from "../empty-timeslot";
 import { appColors } from "../../../../utils/constants/colors";
 

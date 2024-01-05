@@ -6,7 +6,7 @@ import {
   activityDescription,
   activityReadableName,
 } from "./helpers";
-import ActivityAvatar from "../../../../common_components/activity-avatar";
+import ActivityAvatar from "../activity-avatar";
 import { appColors } from "../../../../utils/constants/colors";
 
 interface Props {

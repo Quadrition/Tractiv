@@ -1,5 +1,5 @@
 import { Pressable, ViewStyle } from "react-native";
-import ActivityAvatar from "../../../../common_components/activity-avatar";
+import ActivityAvatar from "../activity-avatar";
 import { ActivityType } from "../../types/activity";
 
 interface Props {

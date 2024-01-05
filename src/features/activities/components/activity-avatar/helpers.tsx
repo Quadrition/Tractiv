@@ -1,4 +1,4 @@
-import { Icons } from "../../utils/helpers/icons.helper";
+import { Icons } from "../../../../utils/helpers/icons.helper";
 
 export const activityIcon = {
   hiking: Icons.Hiking,
