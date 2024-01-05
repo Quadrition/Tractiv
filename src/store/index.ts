@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import activityReducer from "../features/activities/state/activity.slice";
 import { useDispatch } from "react-redux";
+
+import activityReducer from "../features/activities/state/activity.slice";
 
 export const store = configureStore({
   reducer: {

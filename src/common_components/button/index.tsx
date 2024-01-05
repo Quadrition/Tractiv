@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
-import { Pressable, Text, View } from "react-native";
+import React, { ReactNode } from "react";
+import { Pressable, Text, View, StyleSheet } from "react-native";
+
 import { appColors } from "../../utils/constants/colors";
 
 interface Props {
@@ -20,52 +21,59 @@ const TButton = ({
   return (
     <Pressable
       onPress={onPress}
-      style={{
-        backgroundColor: disabled
-          ? appColors.steel
-          : type === "primary"
-          ? appColors.rust
-          : "transparent",
-        shadowColor: "#425965",
-        alignSelf: "center",
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.29,
-        shadowRadius: 15,
-        elevation: 15,
-        width: 295,
-        borderRadius: 30,
-        borderColor: appColors.sage,
-        borderWidth: disabled || type === "outlined" ? 1 : 0,
-        height: 50,
-        display: "flex",
-        justifyContent: "center",
-      }}
+      style={[
+        styles.buttonContainer,
+        {
+          backgroundColor: disabled
+            ? appColors.steel
+            : type === "primary"
+            ? appColors.rust
+            : "transparent",
+        },
+        disabled || type === "outlined" ? styles.outlinedButton : null,
+      ]}
     >
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 10,
-        }}
-      >
+      <View style={styles.buttonContent}>
         {icon && icon}
-        <Text
-          style={{
-            fontSize: 14,
-            color: appColors.snow,
-            textAlign: "center",
-            textTransform: "uppercase",
-            letterSpacing: 2.1,
-            fontFamily: "Rift Soft",
-          }}
-        >
-          {children}
-        </Text>
+        <Text style={styles.buttonText}>{children}</Text>
       </View>
     </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    shadowColor: "#425965",
+    alignSelf: "center",
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.29,
+    shadowRadius: 15,
+    elevation: 15,
+    width: 295,
+    borderRadius: 30,
+    height: 50,
+    display: "flex",
+    justifyContent: "center",
+  },
+  outlinedButton: {
+    borderColor: appColors.sage,
+    borderWidth: 1,
+  },
+  buttonContent: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 10,
+  },
+  buttonText: {
+    fontSize: 14,
+    color: appColors.snow,
+    textAlign: "center",
+    textTransform: "uppercase",
+    letterSpacing: 2.1,
+    fontFamily: "Rift Soft",
+  },
+});
 
 export default TButton;

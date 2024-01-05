@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { ActivityState } from "./types";
 import { fetchActivities, insertActivity } from "./activity.thunks";
 

@@ -1,4 +1,5 @@
 import { Pressable, ViewStyle } from "react-native";
+
 import ActivityAvatar from "../activity-avatar";
 import { ActivityType } from "../../types/activity";
 

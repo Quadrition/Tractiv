@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+
 import { Activity } from "../types/activity";
 import activityService from "../services/activity.service";
 

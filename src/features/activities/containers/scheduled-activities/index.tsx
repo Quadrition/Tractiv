@@ -1,10 +1,11 @@
-import { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import moment from "moment";
+import { View, Text, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
+
 import { GroupedActivities } from "./types";
-import { View, Text } from "react-native";
 import DailyActivities from "../../components/daily-activities";
 import { appColors } from "../../../../utils/constants/colors";
-import { useSelector } from "react-redux";
 import { fetchActivities } from "../../state/activity.thunks";
 import { RootState, useAppDispatch } from "../../../../store";
 
@@ -36,27 +37,10 @@ const ScheduledActivitiesContainer = () => {
   );
 
   return (
-    <View style={{ display: "flex", gap: 20 }}>
-      <Text
-        style={{
-          marginLeft: 20,
-          fontSize: 18,
-          letterSpacing: 0,
-          color: appColors.onyx,
-          fontFamily: "Europa Bold",
-        }}
-      >
-        Scheduled Activities
-      </Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Scheduled Activities</Text>
       {sortedDates.length === 0 ? (
-        <Text
-          style={{
-            marginLeft: 20,
-            fontSize: 14,
-            color: appColors.stale,
-            fontFamily: "Europa Light",
-          }}
-        >
+        <Text style={styles.noActivitiesText}>
           You don't have any activities scheduled yet.
         </Text>
       ) : (
@@ -75,5 +59,25 @@ const ScheduledActivitiesContainer = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    gap: 20,
+  },
+  title: {
+    marginLeft: 20,
+    fontSize: 18,
+    letterSpacing: 0,
+    color: appColors.onyx,
+    fontFamily: "Europa Bold",
+  },
+  noActivitiesText: {
+    marginLeft: 20,
+    fontSize: 14,
+    color: appColors.stale,
+    fontFamily: "Europa Light",
+  },
+});
 
 export default ScheduledActivitiesContainer;

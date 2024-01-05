@@ -1,22 +1,22 @@
-import { View, Text, Pressable } from "react-native";
-import { Activity, ActivityType } from "../../types/activity";
-import TButton from "../../../../common_components/button";
 import React, { useState } from "react";
+import { View, Text, Pressable, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import moment from "moment";
+import { Icons, renderIcon } from "../../../../utils/helpers/icons.helper";
+import TButton from "../../../../common_components/button";
 import TPicker from "../../../../common_components/picker";
+import ActivityAvatarButton from "../../components/activity-avatar-button";
+import { RootState, useAppDispatch } from "../../../../store";
+import { insertActivity } from "../../state/activity.thunks";
+import { appColors } from "../../../../utils/constants/colors";
 import {
   allActivityTypes,
   availableDurations,
   calculateAvailableTimeslots,
   readableDurations,
 } from "./helpers";
-import moment from "moment";
-import { Icons, renderIcon } from "../../../../utils/helpers/icons.helper";
-import { useNavigation } from "@react-navigation/native";
-import ActivityAvatarButton from "../../components/activity-avatar-button";
-import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../../../../store";
-import { insertActivity } from "../../state/activity.thunks";
-import { appColors } from "../../../../utils/constants/colors";
+import { Activity, ActivityType } from "../../types/activity";
 
 const ScheduleActivityContainer = () => {
   const [selectedActivityType, setSelectedActivityType] =
@@ -50,56 +50,23 @@ const ScheduleActivityContainer = () => {
     }
   };
 
-  // useEffect(() => {
-  //   setSelectedTimeslot(moment(timeslot, "dddd, MMMM Do, h:mm a").toDate());
-  // }, [selectedDuration, availableTimeslots]);
-
   return (
-    <View style={{ display: "flex", justifyContent: "space-between", flex: 1 }}>
+    <View style={styles.container}>
       <Pressable onPress={() => navigation.goBack()}>
         {renderIcon(Icons.Close)}
       </Pressable>
-      <View style={{ display: "flex", gap: 40 }}>
-        <Text
-          style={{
-            fontSize: 30,
-            textAlign: "center",
-            letterSpacing: 0,
-            color: appColors.snow,
-            fontFamily: "Europa Bold",
-          }}
-        >
-          Schedule your activity
-        </Text>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-          }}
-        >
+      <View style={styles.mainContainer}>
+        <Text style={styles.title}>Schedule your activity</Text>
+        <View style={styles.activityTypes}>
           {allActivityTypes.map((activity) => (
-            <View
-              style={{ display: "flex", gap: 8, alignItems: "center" }}
-              key={activity}
-            >
+            <View style={styles.activityType} key={activity}>
               <ActivityAvatarButton
                 activityType={activity}
-                style={{ width: 60, height: 60 }}
+                style={styles.activityButton}
                 isSelected={activity === selectedActivityType}
                 onPressed={setSelectedActivityType}
               />
-              <Text
-                style={{
-                  color: appColors.snow,
-                  fontSize: 14,
-                  textTransform: "uppercase",
-                  fontFamily: "Rift Soft",
-                  letterSpacing: 2.1,
-                }}
-              >
-                {activity}
-              </Text>
+              <Text style={styles.activityText}>{activity}</Text>
             </View>
           ))}
         </View>
@@ -148,5 +115,45 @@ const ScheduleActivityContainer = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    justifyContent: "space-between",
+    flex: 1,
+  },
+  mainContainer: {
+    display: "flex",
+    gap: 40,
+  },
+  title: {
+    fontSize: 30,
+    textAlign: "center",
+    letterSpacing: 0,
+    color: appColors.snow,
+    fontFamily: "Europa Bold",
+  },
+  activityTypes: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  activityType: {
+    display: "flex",
+    gap: 8,
+    alignItems: "center",
+  },
+  activityButton: {
+    width: 60,
+    height: 60,
+  },
+  activityText: {
+    color: appColors.snow,
+    fontSize: 14,
+    textTransform: "uppercase",
+    fontFamily: "Rift Soft",
+    letterSpacing: 2.1,
+  },
+});
 
 export default ScheduleActivityContainer;
