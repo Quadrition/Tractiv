@@ -2,9 +2,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Activity } from "../types/activity";
 
-// * Service for managing activities. Note: This service focuses on simplicity rather than efficiency.
+// * Service for managing activities. Note: This service is not focused on efficiency.
 // * The getAllActivities method retrieves all activities at once, which might not be efficient for larger datasets.
-// * In a production scenario, this logic might be handled more efficiently on the backend.
+// * In a production scenario, this logic should be handled more efficiently on the backend.
 class ActivityService {
   async addActivity(activity: Activity) {
     try {

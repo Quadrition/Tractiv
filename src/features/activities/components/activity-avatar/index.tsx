@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.29,
     shadowRadius: 20,
-    elevation: 20,
+    elevation: 10,
   },
   primary: {
     backgroundColor: appColors.rust,
